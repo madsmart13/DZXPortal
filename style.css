@@ -1,0 +1,79 @@
+body {
+    margin: 0;
+    overflow: hidden;
+    font-family: 'Segoe UI', sans-serif;
+    color: #fff;
+}
+
+#bg-video {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    filter: brightness(0.4);
+}
+
+#main-container {
+    text-align: center;
+    margin-top: 5%;
+}
+
+.title {
+    font-size: 50px;
+    text-shadow: 0 0 25px #6f00ff;
+    animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+    from { text-shadow: 0 0 10px #6f00ff; }
+    to { text-shadow: 0 0 35px #9d4bff; }
+}
+
+#captcha-box, #server-panel, #error-box {
+    background: rgba(0,0,0,0.55);
+    border: 1px solid #6f00ff;
+    padding: 20px;
+    width: 330px;
+    margin: auto;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    animation: popup 0.7s ease;
+}
+
+@keyframes popup {
+    from { transform: scale(0.7); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+button {
+    background: #6f00ff;
+    border: none;
+    padding: 10px 25px;
+    color: #fff;
+    margin-top: 10px;
+    font-size: 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #9d4bff;
+}
+
+.server {
+    background: rgba(255,255,255,0.1);
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+.server:hover {
+    background: rgba(255,255,255,0.2);
+    transform: scale(1.05);
+}
