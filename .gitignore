@@ -1,32 +1,17 @@
-# سیستم عامل‌ها
+# File: .gitignore
+# Keep repository clean for static GitHub Pages site
 .DS_Store
 Thumbs.db
 
-# محیط‌های توسعه
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# فولدرهای node (اگر از بسترسازی JS استفاده کنی)
+# Node artifacts (if later used)
 node_modules/
 dist/
 build/
 
-# فایل های موقت و کش
-*.tmp
-*.cache
-.cache/
+# Editor settings
 .vscode/
 .idea/
 
-# خروجی ابزارهای گرافیکی
-*.psd
-*.ai
-*.xcf
-*.blend1
-*.blend2
-
-# تنظیمات شخصی سیستم
+# System swap and temp
 *.swp
 *.swo
