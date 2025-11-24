@@ -179,3 +179,5 @@ modalClose && modalClose.addEventListener('click', ()=> errorModal.classList.add
   }
   animate();
 })();
+
+
