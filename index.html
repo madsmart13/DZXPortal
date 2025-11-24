@@ -1,58 +1,100 @@
-<!DOCTYPE html>
-<html lang="fa">
+<!-- File: index.html -->
+<!doctype html>
+<html lang="fa" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DZX PORTAL</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>DZX PORTAL</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="loading.css">
 
-<link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="loading.css">
-<script src="animations.js" defer></script>
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r152/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="animations.js" defer></script>
 </head>
 <body>
 
-<video autoplay muted loop id="bg-video">
-    <source src="bg-stars.mp4" type="video/mp4">
-</video>
+ 
+  <div id="webgl-root"></div>
 
-<div id="main-container">
-
-    <h1 class="title">DZX PORTAL</h1>
-
-    
-    <div id="captcha-box">
-        <p>تأیید کن که ربات نیستی</p>
-
-        <img src="https://api.multiavatar.com/robot123.svg" class="captcha-img">
-        <input type="text" id="captcha-input" placeholder="کد داخل تصویر را بنویس">
-
-        <button id="captcha-btn">ورود</button>
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">DZX</div>
+      <div class="title">DZX PORTAL</div>
     </div>
+    <div class="subtitle">پرتال گیمینگ — شبیه‌سازی اتصال</div>
+  </header>
 
-    <div id="server-panel" style="display:none;">
-        <h2>انتخاب سرور</h2>
+  <main class="stage">
 
-        <div class="server" onclick="selectServer(1)">🔵 سرور شماره 1</div>
-        <div class="server" onclick="selectServer(2)">🟣 سرور شماره 2</div>
+    <section class="panel auth-panel">
+      <h2>تأیید — من بات نیستم</h2>
+      <canvas id="captchaCanvas" width="260" height="90" class="captcha-canvas"></canvas>
+      <div class="controls">
+        <input id="captchaInput" placeholder="متن داخل تصویر را وارد کنید" />
+        <button id="captchaReload" class="btn small">بارگذاری مجدد</button>
+      </div>
+      <div id="captchaMsg" class="hint">برای ادامه کپچا را وارد کنید.</div>
+    </section>
 
-        <button id="connect-btn">اتصال</button>
+
+    <section class="panel servers-panel">
+      <h2>سرورهای موجود</h2>
+
+      <div class="server" data-id="1">
+        <div class="meta">
+          <div class="name">DZX GAMING #1</div>
+          <div class="info">پینگ: 32ms · وضعیت: نمایش‌شده</div>
+        </div>
+        <div class="actions">
+          <button class="btn select-btn">انتخاب</button>
+          <button class="btn connect-btn" disabled>اتصال</button>
+        </div>
+      </div>
+
+      <div class="server" data-id="2">
+        <div class="meta">
+          <div class="name">DZX GAMING #2</div>
+          <div class="info">پینگ: 48ms · وضعیت: نمایش‌شده</div>
+        </div>
+        <div class="actions">
+          <button class="btn select-btn">انتخاب</button>
+          <button class="btn connect-btn" disabled>اتصال</button>
+        </div>
+      </div>
+
+      <p class="note">اتصال‌ها شبیه‌سازی شده‌اند — پس از لودینگ ۴ ثانیه‌ای ارور IP نمایش داده می‌شود.</p>
+    </section>
+  </main>
+
+  
+  <div id="loaderOverlay" class="hidden">
+    <div id="loaderCinema">
+      <svg id="cinematicRing" viewBox="0 0 200 200" aria-hidden="true">
+        <defs>
+          <linearGradient id="g1" x1="0" x2="1">
+            <stop offset="0" stop-color="#8a2be2" stop-opacity="0.95"/>
+            <stop offset="1" stop-color="#00d4ff" stop-opacity="0.95"/>
+          </linearGradient>
+        </defs>
+        <circle cx="100" cy="100" r="72" stroke="url(#g1)" stroke-width="6" fill="none" stroke-linecap="round" stroke-dasharray="10 6"/>
+      </svg>
+      <div class="loader-text">در حال اتصال به سرور...</div>
     </div>
+  </div>
 
-
-    <div id="loading-screen" style="display:none;">
-        <div class="loader"></div>
-        <p class="loading-text">در حال اتصال ...</p>
+ 
+  <div id="errorModal" class="modal hidden">
+    <div class="modal-card">
+      <h3>اتصال ناموفق</h3>
+      <p>خطا: آی‌پی سرور قابل دسترسی نیست .</p>
+      <button id="modalClose" class="btn">بستن</button>
     </div>
+  </div>
 
-
-    <div id="error-box" style="display:none;">
-        <h2 class="error-title">❌ خطای IP</h2>
-        <p class="error-text">اتصال به سرور امکان‌پذیر نیست. آی‌پی شما مجاز نیست.</p>
-        <button onclick="location.reload()">بازگشت</button>
-    </div>
-
-</div>
+  <footer class="footer">
+    <small> — DZX PORTAL · طراحی: نئونی و WebGL</small>
+  </footer>
 
 </body>
 </html>
